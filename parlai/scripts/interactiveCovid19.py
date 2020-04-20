@@ -55,7 +55,7 @@ def setup_args(parser=None):
     return parser
 
 
-def interactive(opt, print_parser=None):
+def interactive(opt, print_parser=None, raw_text=None):
     if print_parser is not None:
         if print_parser is True and isinstance(opt, ParlaiParser):
             print_parser = opt
@@ -76,19 +76,28 @@ def interactive(opt, print_parser=None):
 
     # Show some example dialogs:
     while True:
-        world.parley()
+        world.parley_covid19(raw_text)
+        output = world.parley_covid19(raw_text)
         # output_demo = world.parley_demo()
         # print("interacitve_demo", output_demo)
         if opt.get('display_examples'):
             print("---")
             print(world.display())
         if world.epoch_done():
-            print("EPOCH DONE")
             break
-        # return output_demo
 
+        return output
+
+# class Interactive(ParlaiScript):
+#     @classmethod
+#     def setup_args(cls):
+#         return setup_args()
+#
+#     def run(self):
+#         return interactive(self.opt, print_parser=self.parser)
 
 if __name__ == '__main__':
     random.seed(42)
     parser = setup_args()
     interactive(parser.parse_args(print_args=False), print_parser=parser)
+    # Interactive.main()

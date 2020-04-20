@@ -67,6 +67,7 @@ class DownloadableFile:
         sha256_hash = hashlib.sha256()
         with open(os.path.join(dpath, self.file_name), "rb") as f:
             for byte_block in iter(lambda: f.read(65536), b""):
+                # print(byte_block)
                 sha256_hash.update(byte_block)
             if sha256_hash.hexdigest() != self.hashcode:
                 # remove_dir(dpath)

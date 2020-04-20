@@ -1,0 +1,157 @@
+
+********************************************************************************
+WARNING: This dialogue model is a research project that was trained on a
+large amount of open-domain Twitter data. It may generate offensive content.
+********************************************************************************
+
+create_agent()111111
+create_agent()3333333
+eee /home/ubuntu/ParlAI/data/models/controllable_dialogue/control_avgnidf10b10e
+create_agent()444444
+create_agent()555555
+create_agent_from_opt_file!!!!!!!!!!!!!!!!!!!!!!!!!
+create_agent_from_opt_file----222222!!!!!!!!!!!!!!!!!!!!!!!!!
+[ warning: overriding opt['batchsize'] to 1 (previously: 64 )]
+[ warning: overriding opt['beam_size'] to 20 (previously: 1 )]
+[ warning: overriding opt['beam_min_n_best'] to 10 (previously: 30 )]
+[ warning: overriding opt['model_file'] to /home/ubuntu/ParlAI/data/models/controllable_dialogue/control_avgnidf10b10e (previously: /private/home/abisee/models/control_avgnidf10b10e_run0 )]
+[ warning: overriding opt['weighted_decoding'] to extrep_2gram:-3.5,extrep_nonstopword:-1e20,intrep_nonstopword:-1e20 (previously: None )]
+[ warning: overriding opt['set_controls'] to avg_nidf:7 (previously:  )]
+create_agent_from_opt_file----3333333!!!!!!!!!!!!!!!!!!!!!!!!!
+new check------------------------- <class 'projects.controllable_dialogue.controllable_seq2seq.controllable_seq2seq.ControllableSeq2seqAgent'>
+create_agent_from_opt_file----4444444!!!!!!!!!!!!!!!!!!!!!!!!!
+==================model versio==========
+==================upgrade versio==========
+==================new_opt versio========== {'show_advanced_args': False, 'task': 'fromfile:parlaiformat', 'pytorch_teacher_task': None, 'pytorch_teacher_dataset': None, 'download_path': '/private/home/abisee/ParlAI/downloads', 'datatype': 'train', 'image_mode': 'raw', 'numthreads': 1, 'hide_labels': False, 'batchsize': 1, 'batch_sort': False, 'context_length': -1, 'include_labels': True, 'pytorch_datafile': None, 'numworkers': 4, 'pytorch_preprocess': False, 'batch_sort_cache': 'none', 'batch_length_range': 5, 'shuffle': False, 'model': 'projects.controllable_dialogue.controllable_seq2seq.controllable_seq2seq:ControllableSeq2seqAgent', 'model_file': '/home/ubuntu/ParlAI/data/models/controllable_dialogue/control_avgnidf10b10e', 'dict_class': 'parlai.core.dict:DictionaryAgent', 'evaltask': 'fromfile:parlaiformat2', 'eval_batchsize': None, 'display_examples': False, 'num_epochs': -1, 'max_train_time': -1, 'validation_every_n_secs': 90, 'save_every_n_secs': -1, 'save_after_valid': False, 'validation_every_n_epochs': -1, 'validation_max_exs': -1, 'validation_patience': 12, 'validation_metric': 'ppl', 'validation_metric_mode': 'min', 'validation_cutoff': 1.0, 'dict_build_first': True, 'load_from_checkpoint': False, 'validation_share_agent': False, 'debug': False, 'tensorboard_log': True, 'tensorboard_tag': None, 'tensorboard_metrics': 'loss,ppl', 'tensorboard_comment': 'control_avgnidf10b10e_run0', 'dict_maxexs': -1, 'dict_include_valid': True, 'dict_include_test': False, 'log_every_n_secs': 10, 'image_size': 256, 'image_cropsize': 224, 'fromfile_datapath': '/private/home/abisee/ParlAI/data/ConvAI2_controllable/train_self_original.txt', 'fromfile_datapath2': '/private/home/abisee/ParlAI/data/ConvAI2_controllable/valid_self_original.txt', 'init_model': '/private/home/abisee/models/baseline', 'hiddensize': 1024, 'embeddingsize': 300, 'numlayers': 2, 'dropout': 0.1, 'bidirectional': False, 'attention': 'general', 'attention_length': 48, 'attention_time': 'post', 'rnn_class': 'lstm', 'decoder': 'same', 'lookuptable': 'enc_dec', 'numsoftmax': 1, 'beam_size': 20, 'beam_dot_log': False, 'beam_min_n_best': 10, 'beam_min_length': 3, 'input_dropout': 0.0, 'beam_block_ngram': 0, 'control_vars': 'avg_nidf', 'control_num_buckets': '', 'control_embeddingsize': '', 'add_control': False, 'set_controls': 'avg_nidf:7', 'beam_reorder': False, 'beam_features_wts': '', 'verbose': False, 'embedding_type': 'glove', 'embedding_projection': 'random', 'optimizer': 'sgd', 'learningrate': 3, 'gradient_clip': 0.1, 'momentum': 0.9, 'rank_candidates': False, 'truncate': -1, 'history_size': -1, 'person_tokens': True, 'use_reply': 'label', 'add_p1_after_newln': True, 'gpu': -1, 'multigpu': False, 'no_cuda': False, 'dict_file': '/u/scr/abisee/control_dialogue_stuff/models/models_public_version/dict_twit30k_train_split', 'dict_initpath': None, 'dict_language': 'english', 'dict_max_ngram_size': -1, 'dict_minfreq': 0, 'dict_maxtokens': -1, 'dict_nulltoken': '__null__', 'dict_starttoken': '__start__', 'dict_endtoken': '__end__', 'dict_unktoken': '__unk__', 'dict_tokenizer': 'split', 'dict_lower': True, 'bpe_debug': False, 'dict_textfields': 'text,labels', 'parlai_home': '/private/home/abisee/ParlAI', 'override': {'model_file': '/private/home/abisee/models/control_avgnidf10b10e_run0', 'add_control': True, 'control_vars': 'avg_nidf'}, 'starttime': 'Nov29_02-04', 'model_version': 1, 'weighted_decoding': 'extrep_2gram:-3.5,extrep_nonstopword:-1e20,intrep_nonstopword:-1e20'}
+==================new_opt model_file========== /home/ubuntu/ParlAI/data/models/controllable_dialogue/control_avgnidf10b10e
+create_agent_from_opt_file----final!!!!!!!!!!!!!!!!!!!!!!!!!
+checkckcckck----- <class 'projects.controllable_dialogue.controllable_seq2seq.controllable_seq2seq.ControllableSeq2seqAgent'>
+Loading up controllable features...
+Loading word count stats from /home/ubuntu/ParlAI/data/controllable_dialogue/word2count.pkl...
+num_sents:  5328706
+Done loading word2nidf dictionary.
+Loading Arora embedding info from /home/ubuntu/ParlAI/data/controllable_dialogue/arora.pkl...
+Done loading arora info.
+[ Using CUDA ]
+Dictionary: loading dictionary from /home/ubuntu/ParlAI/data/models/controllable_dialogue/control_avgnidf10b10e.dict
+[ num words =  35213 ]
+[ControllableSeq2seq: full interactive mode on.]
+[ Loading existing model params from /home/ubuntu/ParlAI/data/models/controllable_dialogue/control_avgnidf10b10e ]
+checkckcckck2222222----- <projects.controllable_dialogue.controllable_seq2seq.controllable_seq2seq.ControllableSeq2seqAgent object at 0x7f16decadba8>
+[ Using CUDA ]
+Dictionary: loading dictionary from /home/ubuntu/ParlAI/data/models/controllable_dialogue/control_avgnidf10b10e.dict
+[ num words =  35213 ]
+[ControllableSeq2seq: full interactive mode on.]
+[ Loading existing model params from /home/ubuntu/ParlAI/data/models/controllable_dialogue/control_avgnidf10b10e ]
+create_agent()666666
+Enter [DONE] if you want to end the episode.
+
+[creating task(s): interactive]
+[ optional arguments: ] 
+[  display_examples: False ]
+[  display_ignore_fields: label_candidates,text_candidates ]
+[  display_prettify: False ]
+[  interactive_task: True ]
+[ Main ParlAI Arguments: ] 
+[  batchsize: 1 ]
+[  datapath: /home/ubuntu/ParlAI/data ]
+[  datatype: train ]
+[  download_path: /private/home/abisee/ParlAI/downloads ]
+[  dynamic_batching: None ]
+[  hide_labels: False ]
+[  image_mode: raw ]
+[  init_opt: None ]
+[  multitask_weights: [1] ]
+[  numthreads: 1 ]
+[  show_advanced_args: False ]
+[  task: fromfile:parlaiformat ]
+[ ParlAI Model Arguments: ] 
+[  dict_class: parlai.core.dict:DictionaryAgent ]
+[  init_model: /private/home/abisee/models/baseline ]
+[  model: projects.controllable_dialogue.controllable_seq2seq.controllable_seq2seq:ControllableSeq2seqAgent ]
+[  model_file: /home/ubuntu/ParlAI/data/models/controllable_dialogue/control_avgnidf10b10e ]
+[ Local Human Arguments: ] 
+[  local_human_candidates_file: None ]
+[  single_turn: False ]
+[ ParlAI Image Preprocessing Arguments: ] 
+[  image_cropsize: 224 ]
+[  image_size: 256 ]
+[ ControllableSeq2seqAgent Arguments: ] 
+[  add_control: False ]
+[  attention: general ]
+[  attention_length: 48 ]
+[  attention_time: post ]
+[  beam_block_ngram: 0 ]
+[  beam_dot_log: False ]
+[  beam_min_length: 3 ]
+[  beam_min_n_best: 10 ]
+[  beam_reorder: False ]
+[  beam_size: 20 ]
+[  bidirectional: False ]
+[  control_embeddingsize:  ]
+[  control_num_buckets:  ]
+[  control_vars: avg_nidf ]
+[  decoder: same ]
+[  dropout: 0.1 ]
+[  embeddingsize: 300 ]
+[  hiddensize: 1024 ]
+[  init_model: /private/home/abisee/models/baseline ]
+[  input_dropout: 0.0 ]
+[  lookuptable: enc_dec ]
+[  numlayers: 2 ]
+[  numsoftmax: 1 ]
+[  rnn_class: lstm ]
+[  set_controls: avg_nidf:7 ]
+[  verbose: False ]
+[  weighted_decoding: extrep_2gram:-3.5,extrep_nonstopword:-1e20,intrep_nonstopword:-1e20 ]
+[ TorchAgent Arguments: ] 
+[  add_p1_after_newln: True ]
+[  delimiter: 
+ ]
+[  embedding_projection: random ]
+[  embedding_type: glove ]
+[  fp16: False ]
+[  gpu: -1 ]
+[  history_size: -1 ]
+[  interactive_mode: True ]
+[  label_truncate: None ]
+[  no_cuda: False ]
+[  person_tokens: True ]
+[  rank_candidates: False ]
+[  split_lines: False ]
+[  text_truncate: None ]
+[  truncate: -1 ]
+[  use_reply: label ]
+[ Optimizer Arguments: ] 
+[  adam_eps: 1e-08 ]
+[  betas: (0.9, 0.999) ]
+[  gradient_clip: 0.1 ]
+[  learningrate: 3 ]
+[  momentum: 0.9 ]
+[  nesterov: True ]
+[  nus: (0.7,) ]
+[  optimizer: sgd ]
+[  weight_decay: None ]
+[ Learning Rate Scheduler: ] 
+[  lr_scheduler: reduceonplateau ]
+[  lr_scheduler_decay: 0.5 ]
+[  lr_scheduler_patience: 3 ]
+[  update_freq: 1 ]
+[  warmup_rate: 0.0001 ]
+[  warmup_updates: -1 ]
+[ Dictionary Arguments: ] 
+[  bpe_debug: False ]
+[  dict_endtoken: __end__ ]
+[  dict_file: /home/ubuntu/ParlAI/data/models/controllable_dialogue/control_avgnidf10b10e.dict ]
+[  dict_initpath: None ]
+[  dict_language: english ]
+[  dict_lower: True ]
+[  dict_max_ngram_size: -1 ]
+[  dict_maxtokens: -1 ]
+[  dict_minfreq: 0 ]
+[  dict_nulltoken: __null__ ]
+[  dict_starttoken: __start__ ]
+[  dict_textfields: text,labels ]
+[  dict_tokenizer: split ]
+[  dict_unktoken: __unk__ ]
+Enter Your Message: 
