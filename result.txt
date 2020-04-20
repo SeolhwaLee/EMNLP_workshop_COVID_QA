@@ -1,0 +1,25 @@
+
+********************************************************************************
+WARNING: This dialogue model is a research project that was trained on a
+large amount of open-domain Twitter data. It may generate offensive content.
+********************************************************************************
+
+ * Serving Flask app "interactiveDemo" (lazy loading)
+ * Environment: production
+   WARNING: Do not use the development server in a production environment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+!! hey
+[ warning: overriding opt['model_file'] to /home/ubuntu/ParlAI/data/models/controllable_dialogue/control_avgnidf10b10e (previously: /private/home/abisee/models/control_avgnidf10b10e_run0 )]
+[ warning: overriding opt['weighted_decoding'] to extrep_2gram:-3.5,extrep_nonstopword:-1e20,intrep_nonstopword:-1e20 (previously: None )]
+[ warning: overriding opt['set_controls'] to avg_nidf:7 (previously:  )]
+Loading up controllable features...
+Loading word count stats from /home/ubuntu/ParlAI/data/controllable_dialogue/word2count.pkl...
+num_sents:  5328706
+Done loading word2nidf dictionary.
+Loading Arora embedding info from /home/ubuntu/ParlAI/data/controllable_dialogue/arora.pkl...
+Done loading arora info.
+[ Using CUDA ]
+Dictionary: loading dictionary from /home/ubuntu/ParlAI/data/models/controllable_dialogue/control_avgnidf10b10e.dict
+[ num words =  35213 ]
+[ControllableSeq2seq: full interactive mode on.]
