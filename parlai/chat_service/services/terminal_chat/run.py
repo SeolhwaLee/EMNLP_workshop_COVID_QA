@@ -4,36 +4,43 @@
 # This source code is licensed under the MIT license found in the
 # LICENSE file in the root directory of this source tree.
 """
-Websocket Runner.
+Terminal Chat Runner.
+
+Used to run the terminal chat server.
 """
+
 from parlai.core.params import ParlaiParser
-from parlai.chat_service.services.websocket.websocket_manager import WebsocketManager
+from parlai.chat_service.services.terminal_chat.terminal_manager import TerminalManager
 import parlai.chat_service.utils.config as config_utils
 
 
-SERVICE_NAME = 'websocket'
+SERVICE_NAME = 'terminal'
 
 
 def setup_args():
     """
     Set up args.
+
+    :return: A parser that takes in command line arguments for chat services (debug, config-path, password), and a port.
     """
     parser = ParlaiParser(False, False)
     parser.add_parlai_data_path()
-    parser.add_websockets_args()
+    parser.add_chatservice_args()
+    parser_grp = parser.add_argument_group('Terminal Chat')
+    parser_grp.add_argument(
+        '--port', default=35496, type=int, help='Port to run the terminal chat server'
+    )
     return parser.parse_args()
 
 
 def run(opt):
     """
-    Run MessengerManager.
+    Run TerminalManager.
     """
     opt['service'] = SERVICE_NAME
-    manager = WebsocketManager(opt)
+    manager = TerminalManager(opt)
     try:
         manager.start_task()
-    except BaseException:
-        raise
     finally:
         manager.shutdown()
 
