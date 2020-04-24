@@ -15,16 +15,14 @@ opt:
   encode_candidate_vecs: True
   single_turn: True
   fp16: True
-  fixed_candidate_vecs: reuse
-  eval_candidates: fixed
+  interactive_mode: True
   override:
     model: transformer/polyencoder
     no_cuda: True
     encode_candidate_vecs: True
     single_turn: True
     fp16: True
-    fixed_candidate_vecs: reuse
-    eval_candidates: fixed
+    interactive_mode: True
   no_cuda: True
 additional_args:
   page_id: 1 # Configure Your Own Page
