@@ -16,7 +16,7 @@ opt:
   single_turn: True
   fp16: True
   fixed_candidate_vecs: reuse
-  eval_candidates: inline
+  eval_candidates: fixed
   override:
     model: transformer/polyencoder
     no_cuda: True
@@ -24,7 +24,7 @@ opt:
     single_turn: True
     fp16: True
     fixed_candidate_vecs: reuse
-    eval_candidates: inline
+    eval_candidates: fixed
   no_cuda: True
 additional_args:
   page_id: 1 # Configure Your Own Page
