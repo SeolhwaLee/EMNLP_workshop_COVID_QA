@@ -11,7 +11,8 @@ Used to run the browser chat server.
 
 from parlai.core.params import ParlaiParser
 from parlai.chat_service.services.browser_chat.browser_manager import BrowserManager
-from parlai.chat_service.core import shared_utils as utils
+# from parlai.chat_service.core import shared_utils as utils
+from parlai.chat_service.utils.config import parse_configuration_file
 
 
 SERVICE_NAME = 'Browser'
@@ -48,7 +49,7 @@ def run(opt):
 if __name__ == '__main__':
     opt = setup_args()
     config_path = opt.get('config_path')
-    config = utils.parse_configuration_file(config_path)
+    config = parse_configuration_file(config_path)
     opt.update(config['world_opt'])
     opt['config'] = config
     run(opt)
