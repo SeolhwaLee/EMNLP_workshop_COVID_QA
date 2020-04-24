@@ -5,16 +5,28 @@ tasks:
     timeout: 1800
     agents_required: 1
 task_name: covid19_chatbot
-world_module: parlai.chat_service.tasks.chatbot.worlds
+world_module: parlai.chat_service.tasks.covid19_chatbot.worlds
 overworld: MessengerOverworld
 max_workers: 30
 opt:
   debug: True
   model: transformer/polyencoder
-  model_file: fine_tuning_model/covid19_scraped_ver7/poly_encoder_covid19
+  model_file: /efs/seol_fine_tuning/covid19_scraped_ver6/poly_encoder_covid19
+  encode_candidate_vecs: True
+  single_turn: True
+  fp16: True
+  fixed_candidate_vecs: reuse
+  eval_candidates: inline
   override:
     model: transformer/polyencoder
     no_cuda: True
+    encode_candidate_vecs: True
+    single_turn: True
+    fp16: True
+    fixed_candidate_vecs: reuse
+    eval_candidates: inline
   no_cuda: True
 additional_args:
   page_id: 1 # Configure Your Own Page
+  load_model: /efs/seol_fine_tuning/covid19_scraped_ver6/poly_encoder_covid19
+

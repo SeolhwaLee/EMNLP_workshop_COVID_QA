@@ -70,12 +70,9 @@ class WebsocketManager(ChatServiceManager):
         """
         Load model if necessary.
         """
-        if 'models' in self.opt and self.should_load_model:
-            model_params = {}
-            for model in self.opt['models']:
-                model_opt = self.opt['models'][model]
-                model_params[model] = create_agent(model_opt).share()
-            self.runner_opt['shared_bot_params'] = model_params
+        # print("TEST", self.opt)
+        if 'model' in self.opt:
+            self.runner_opt['shared_bot_params'] = create_agent(self.runner_opt).share()
 
     def _handle_message_read(self, event):
         """
