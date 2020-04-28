@@ -37,7 +37,7 @@ python -u examples/train_model.py \
   --model transformer/polyencoder --batchsize 64 --eval-batchsize 10 \
   --warmup_updates 100 --lr-scheduler-patience 0 --lr-scheduler-decay 0.4 \
   -lr 5e-05 --data-parallel True --history-size 20 --label-truncate 72 \
-  --text-truncate 360 --num-epochs 50.0 --max_train_time 200000 -veps 0.5 \
+  --text-truncate 360 --num-epochs 30.0 --max_train_time 200000 -veps 0.5 \
   -vme 8000 --validation-metric accuracy --validation-metric-mode max \
   --save-after-valid True --log_every_n_secs 20 --candidates batch --fp16 True \
   --dict-tokenizer bpe --dict-lower True --optimizer adamax --output-scaling 0.06 \
@@ -47,12 +47,12 @@ python -u examples/train_model.py \
   --embedding-size 768 --activation gelu --embeddings-scale False --n-segments 2 \
   --learn-embeddings True --polyencoder-type codes --poly-n-codes 64 \
   --poly-attention-type basic --dict-endtoken __start__ \
-  --model-file fine_tuning_model/covid19_scraped_ver7/poly_encoder_covid19 \
+  --model-file fine_tuning_model/covid19_scraped_ver6/poly_encoder_covid19 \
   --dict-file zoo:pretrained_transformers/poly_model_huge_reddit/model.dict \
   --image-mode no_image_model
 ```
 ```
-python examples/eval_model.py -m transformer/polyencoder -mf fine_tuning_model/covid19_scraped_ver7/poly_encoder_covid19 -t covid19 --encode-candidate-vecs true --eval-candidates fixed  
+python examples/eval_model.py -m transformer/polyencoder -mf fine_tuning_model/covid19_scraped_ver6/poly_encoder_covid19 -t covid19 --encode-candidate-vecs true --eval-candidates fixed  
 ```
 ```
 python examples/interactive.py -m transformer/polyencoder -mf fine_tuning_model/covid19_scraped_ver6/poly_encoder_covid19 --encode-candidate-vecs true --single-turn True
