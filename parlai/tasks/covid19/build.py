@@ -20,41 +20,34 @@ from parlai.core.build_data import DownloadableFile
 # ]
 RESOURCES = [
     DownloadableFile(
-        'https://drive.google.com/file/d/1yPZprx9L1H4G9K7geJup-P0tS_nC0ko3/view?usp=sharing',
-        'convid19qa.tar.gz',
-        'cfa439496d1d45c53881b90643b1f029',
+        # 'ba4228e6b1f4b8379cae0feb3d78cf76',
+        '1kJ0ojU23gcs21y-57fnE_2KNcPtxacRV',
+        'Covid19QA-train.json',
+        '',
+        False,
         True,
+    ),
+    DownloadableFile(
+        # '59f3bd9dc8f683117bca31ad5ad4ebb1',
+        '1Un4OrA2Y10XxDfo2n2sSg3BpzVczY2Po',
+        'Covid19QA-test.json',
+        '',
+        False,
+        True,
+    ),
+    DownloadableFile(
+        # '7dd8d672adf8c528491d54588515a4d3',
+        '1nehK0kwI3nAV9iID5Vnfg0EOsCxrv7SF',
+        'Covid19QA-dev.json',
+        '',
+        False,
         True,
     )
 ]
 
 
 def create_fb_format(outpath, dtype, inpath):
-    print('building fbformat:' + dtype)
-    fout = open(os.path.join(outpath, dtype + '.txt'), 'w')
-    with open(inpath) as f:
-        lines = [line.strip('\n') for line in f]
-    lastqid, lq, ans, cands = None, None, None, None
-    for i in range(2, len(lines)):
-        l = lines[i].split('\t')
-        lqid = l[0]  # question id
-        if lqid != lastqid:
-            if lastqid is not None:
-                # save
-                s = '1 ' + lq + '\t' + ans.lstrip('|') + '\t\t' + cands.lstrip('|')
-                if (dtype.find('filtered') == -1) or ans != '':
-                    fout.write(s + '\n')
-            # reset
-            cands = ''
-            ans = ''
-            lastqid = lqid
-        lcand = l[5]  # candidate answer / sentence from doc
-        lq = l[1]  # question
-        llabel = l[6]  # 0 or 1
-        if int(llabel) == 1:
-            ans = ans + '|' + lcand
-        cands = cands + '|' + lcand
-    fout.close()
+    pass
 
 def create_fb_format_covid(outpath, dtype, inpath):
     print('building fbformat:' + dtype)
@@ -95,19 +88,38 @@ def build(opt):
         build_data.make_dir(dpath)
 
         # Download the data.
-        # for downloadable_file in RESOURCES:
-        #     downloadable_file.download_file(dpath)
+        for downloadable_file in RESOURCES:
+            downloadable_file.download_file(dpath, check=False)
 
 
-        dpext = os.path.join(dpath, 'CovidQACorpusScraped')
-        create_fb_format_covid(dpath, 'train', os.path.join(dpext, 'Covid19QA-train.json'))
-        create_fb_format_covid(dpath, 'valid', os.path.join(dpext, 'Covid19QA-dev.json'))
-        create_fb_format_covid(dpath, 'test', os.path.join(dpext, 'Covid19QA-test.json'))
+        # dpext = os.path.join(dpath, 'CovidQACorpusScraped')
+        create_fb_format_covid(dpath, 'train', os.path.join(dpath, 'Covid19QA-train.json'))
+        create_fb_format_covid(dpath, 'valid', os.path.join(dpath, 'Covid19QA-dev.json'))
+        create_fb_format_covid(dpath, 'test', os.path.join(dpath, 'Covid19QA-test.json'))
         create_fb_format_covid(
-            dpath, 'train-filtered', os.path.join(dpext, 'Covid19QA-train.json')
+            dpath, 'train-filtered', os.path.join(dpath, 'Covid19QA-train.json')
         )
-        create_fb_format_covid(dpath, 'valid-filtered', os.path.join(dpext, 'Covid19QA-dev.json'))
-        create_fb_format_covid(dpath, 'test-filtered', os.path.join(dpext, 'Covid19QA-test.json'))
+        create_fb_format_covid(dpath, 'valid-filtered', os.path.join(dpath, 'Covid19QA-dev.json'))
+        create_fb_format_covid(dpath, 'test-filtered', os.path.join(dpath, 'Covid19QA-test.json'))
 
         # Mark the data as built.
         build_data.mark_done(dpath, version_string=version)
+
+    dpath = os.path.join(opt['datapath'], 'models', 'covid19')
+    # print("TEST", dpath)
+    if not os.path.exists(dpath):
+        os.makedirs(dpath)
+    if not build_data.built(dpath, version):
+        print('[downloading model: poly_encoder_covid19]')
+        # Download the model
+        model = DownloadableFile(
+            '1yDF7mYmVed-BoTkfjuRSLNw69UXeSU1S',
+            'covid19_scraped_ver6.tag.gz',
+            '',
+            True,
+            True
+        )
+        model.download_file(dpath, check=False)
+
+        # Mark the data as built.
+        build_data.mark_done(dpath, version)

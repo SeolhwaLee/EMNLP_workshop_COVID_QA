@@ -78,13 +78,14 @@ class DownloadableFile:
             else:
                 print("[ Checksum Successful ]")
 
-    def download_file(self, dpath):
+    def download_file(self, dpath, check=True):
         if self.from_google:
             download_from_google_drive(self.url, os.path.join(dpath, self.file_name))
         else:
             download(self.url, dpath, self.file_name)
 
-        self.checksum(dpath)
+        if check:
+            self.checksum(dpath)
 
         if self.zipped:
             untar(dpath, self.file_name)
