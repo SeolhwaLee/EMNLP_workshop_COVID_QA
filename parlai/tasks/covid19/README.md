@@ -29,7 +29,7 @@ or change 'localhost' to ip address in Parlai_ver2/parlai/chat_service/services/
 ```
 ./start_terminal_service.sh
 ```
-![example](https://github.com/qli74/ParlAI/blob/master/cov2.png)
+![example](https://github.com/sseol11/Parlai_ver2/blob/master/cov_terminal.png)
 
 
 4.another api file written with fastapi: Parlai_ver2/fastapi_covid.py\
