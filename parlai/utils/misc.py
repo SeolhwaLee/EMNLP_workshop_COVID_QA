@@ -627,6 +627,7 @@ def display_messages(
     prettify: bool = False,
     ignore_fields: str = '',
     max_len: int = 1000,
+    verbose: bool = False,
 ) -> Optional[str]:
     """
     Return a string describing the set of messages provided.
