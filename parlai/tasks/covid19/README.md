@@ -1,6 +1,6 @@
-Task: covid
+Task: covid19
 ==============
-Description: covid-19 QA data and a poly-encoder model
+Description: covid-19 QA scraped data and a poly-encoder model
 
 Tags: #covid19
 
