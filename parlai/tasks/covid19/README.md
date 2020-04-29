@@ -26,8 +26,8 @@ or change 'localhost' to ip address in PariAI_ver2/parlai/chat_service/services/
 ![example](https://github.com/qli74/ParlAI/blob/master/cov2.png)
 
 
-4.another api file written with fastapi: ParlAI/fastapi_covid.py\
-https://github.com/qli74/ParlAI/blob/master/fastapi_covid.py
+4.another api file written with fastapi: ParlAI_ver2/fastapi_covid.py\
+https://github.com/sseol11/Parlai_ver2/blob/master/fastapi_covid.py
 
 5.code for training & eval & interactive
 ```
