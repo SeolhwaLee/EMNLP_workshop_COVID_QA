@@ -4,6 +4,12 @@ Description: covid-19 QA data and a poly-encoder model
 
 Tags: #covid19
 
+** Fine-tuned model download **
+```
+https://drive.google.com/file/d/1yDF7mYmVed-BoTkfjuRSLNw69UXeSU1S/view?usp=sharing
+```
+Download the model and decompress & put the Parlai_ver2/fine_tune_model/
+
 1.Download files (including train&valid data and model)
 ```
 git clone https://github.com/sseol11/Parlai_ver2.git
@@ -15,7 +21,7 @@ python examples/display_data.py -t covid19 -n 1
 ```
 ./start_browser_service.sh
 ```
-or change 'localhost' to ip address in PariAI_ver2/parlai/chat_service/services/browser_chat/client.py _run_browser()
+or change 'localhost' to ip address in Parlai_ver2/parlai/chat_service/services/browser_chat/client.py _run_browser()
 ![example](https://github.com/qli74/ParlAI/blob/master/cov1.png)
 
 
@@ -26,7 +32,7 @@ or change 'localhost' to ip address in PariAI_ver2/parlai/chat_service/services/
 ![example](https://github.com/qli74/ParlAI/blob/master/cov2.png)
 
 
-4.another api file written with fastapi: ParlAI_ver2/fastapi_covid.py\
+4.another api file written with fastapi: Parlai_ver2/fastapi_covid.py\
 https://github.com/sseol11/Parlai_ver2/blob/master/fastapi_covid.py
 
 5.code for training & eval & interactive
