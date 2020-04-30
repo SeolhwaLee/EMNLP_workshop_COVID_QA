@@ -48,13 +48,13 @@ python -u examples/train_model.py \
   --embedding-size 768 --activation gelu --embeddings-scale False --n-segments 2 \
   --learn-embeddings True --polyencoder-type codes --poly-n-codes 64 \
   --poly-attention-type basic --dict-endtoken __start__ \
-  --model-file fine_tuning_model/covid19_scraped_ver6/poly_encoder_covid19 \
+  --model-file model/covid19_scraped_ver6/poly_encoder_covid19 \
   --dict-file zoo:pretrained_transformers/poly_model_huge_reddit/model.dict \
   --image-mode no_image_model
 ```
 ```
-python examples/eval_model.py -m transformer/polyencoder -mf fine_tuning_model/covid19_scraped_ver6/poly_encoder_covid19 -t covid19 --encode-candidate-vecs true --eval-candidates fixed  
+python examples/eval_model.py -m transformer/polyencoder -mf model/covid19_scraped_ver6/poly_encoder_covid19 -t covid19 --encode-candidate-vecs true --eval-candidates fixed  
 ```
 ```
-python examples/interactive.py -m transformer/polyencoder -mf fine_tuning_model/covid19_scraped_ver6/poly_encoder_covid19 --encode-candidate-vecs true --single-turn True
+python examples/interactive.py -m transformer/polyencoder -mf model/covid19_scraped_ver6/poly_encoder_covid19 --encode-candidate-vecs true --single-turn True
 ```
