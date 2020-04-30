@@ -1,5 +1,4 @@
 import subprocess
-<<<<<<< HEAD
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -34,5 +33,3 @@ def root(question: str = "What is Covid-19?"):
     #print(line)
     result=line[-1]
     return {"question": question, "answers": result}
-
->>>>>>> origin
