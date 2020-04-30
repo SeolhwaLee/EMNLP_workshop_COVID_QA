@@ -113,8 +113,8 @@ def build(opt):
         print('[downloading model: poly_encoder_covid19]')
         # Download the model
         model = DownloadableFile(
-            '1yDF7mYmVed-BoTkfjuRSLNw69UXeSU1S',
-            'covid19_scraped_ver6.tag.gz',
+            '1xxqBDLuY-0XtnVEGxUXM5SzgQ3tRsJ5K',
+            'covid19_scraped_ver6.zip',
             '',
             True,
             True
