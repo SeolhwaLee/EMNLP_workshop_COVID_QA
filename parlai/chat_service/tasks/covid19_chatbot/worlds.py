@@ -61,7 +61,7 @@ class MessengerBotChatTaskWorld(World):
             self.agent.observe(
                 {
                     'id': 'World',
-                    'text': 'Welcome to the ParlAI Chatbot demo. '
+                    'text': 'Welcome to the JHU Covid-19 Chatbot demo. '
                     'You are now paired with a bot - feel free to send a message.'
                     'Type [DONE] to finish the chat.',
                 }
@@ -120,8 +120,8 @@ class MessengerOverworld(World):
             self.agent.observe(
                 {
                     'id': 'Overworld',
-                    'text': 'Welcome to the overworld for the ParlAI messenger '
-                    'chatbot demo. Please type "begin" to start.',
+                    'text': 'Welcome to the JHU Covid-19 Chatbot demo. '
+                    'Please type "begin" to start.',
                     'quick_replies': ['begin'],
                 }
             )
