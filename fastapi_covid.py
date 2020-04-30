@@ -9,7 +9,7 @@ app = FastAPI()
 # p = subprocess.Popen(['python -m parlai.scripts.interactive -mf ../model/poly/covid7'], shell=True,
 #                      stdout=subprocess.PIPE,
 #                      stdin=subprocess.PIPE)
-p = subprocess.Popen(['python -m parlai.scripts.interactive -mf fine_tuning_model/covid19_scraped_ver6/poly_encoder_covid19'], shell=True,
+p = subprocess.Popen(['python -m parlai.scripts.interactive -mf model/covid19_scraped_ver6/poly_encoder_covid19'], shell=True,
                      stdout=subprocess.PIPE,
                      stdin=subprocess.PIPE)
 
