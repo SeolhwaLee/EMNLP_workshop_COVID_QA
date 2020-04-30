@@ -11,7 +11,7 @@ max_workers: 30
 opt:
   debug: True
   model: transformer/polyencoder
-  model_file: fine_tuning_model/covid19_scraped_ver6/poly_encoder_covid19
+  model_file: model/covid19_scraped_ver6/poly_encoder_covid19
   encode_candidate_vecs: True
   single_turn: True
   fp16: True
@@ -26,5 +26,5 @@ opt:
   no_cuda: True
 additional_args:
   page_id: 1 # Configure Your Own Page
-  load_model: fine_tuning_model/covid19_scraped_ver6/poly_encoder_covid19
+  load_model: model/covid19_scraped_ver6/poly_encoder_covid19
 
