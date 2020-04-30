@@ -4,11 +4,6 @@ Description: covid-19 QA scraped data and a poly-encoder model
 
 Tags: #covid19
 
-** Fine-tuned model download **
-```
-https://drive.google.com/file/d/1yDF7mYmVed-BoTkfjuRSLNw69UXeSU1S/view?usp=sharing
-```
-Download the model and decompress & put the Parlai_ver2/fine_tuning_model/
 
 1.Download files (including train&valid data and model)
 ```
