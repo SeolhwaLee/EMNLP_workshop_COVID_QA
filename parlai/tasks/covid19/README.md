@@ -16,7 +16,7 @@ python examples/display_data.py -t covid19 -n 1
 ```
 ./start_browser_service.sh
 ```
-If you have error like this:
+If you have error like this on the Parlai_ver2/---.log:
 ```
 git.cmd DEBUG Popen(['git', 'rev-parse', 'HEAD'], cwd=/home/ubuntu/ParlAI/parlai_internal, universal_newlines=False, shell=None, istream=None)
 ```
