@@ -105,7 +105,7 @@ def build(opt):
         # Mark the data as built.
         build_data.mark_done(dpath, version_string=version)
 
-    dpath = os.path.join(opt['datapath'], 'models', 'covid19')
+    dpath = os.path.join(opt['datapath'][:-5], 'model')
     # print("TEST", dpath)
     if not os.path.exists(dpath):
         os.makedirs(dpath)
