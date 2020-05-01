@@ -12,13 +12,24 @@ cd ParlAI_ver2
 python examples/display_data.py -t covid19 -n 1
 ```
 
-2.web chat on localhost (use default port: 35496)
+2.web chat on localhost (use default port: 5002)
 ```
 ./start_browser_service.sh
 ```
 or change 'localhost' to ip address in Parlai_ver2/parlai/chat_service/services/browser_chat/client.py _run_browser()
 ![example](https://github.com/qli74/ParlAI/blob/master/cov1.png)
 
+If you have error like this:
+```
+git.cmd DEBUG Popen(['git', 'rev-parse', 'HEAD'], cwd=/home/ubuntu/ParlAI/parlai_internal, universal_newlines=False, shell=None, istream=None)
+```
+Follow this (https://github.com/facebookresearch/ParlAI/tree/master/example_parlai_internal):
+```
+cd ~/ParlAI
+mkdir parlai_internal
+cp -r example_parlai_internal/ parlai_internal
+cd parlai_internal
+```
 
 3.terminal chat
 ```
