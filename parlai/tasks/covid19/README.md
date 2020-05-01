@@ -22,7 +22,7 @@ git.cmd DEBUG Popen(['git', 'rev-parse', 'HEAD'], cwd=/home/ubuntu/ParlAI/parlai
 ```
 Follow this (https://github.com/facebookresearch/ParlAI/tree/master/example_parlai_internal):
 ```
-cd ~/ParlAI
+cd ~/Parlai_ver2
 mkdir parlai_internal
 cp -r example_parlai_internal/ parlai_internal
 cd parlai_internal
