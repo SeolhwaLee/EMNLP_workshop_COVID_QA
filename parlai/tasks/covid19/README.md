@@ -16,9 +16,6 @@ python examples/display_data.py -t covid19 -n 1
 ```
 ./start_browser_service.sh
 ```
-or change 'localhost' to ip address in Parlai_ver2/parlai/chat_service/services/browser_chat/client.py _run_browser()
-![example](https://github.com/qli74/ParlAI/blob/master/cov1.png)
-
 If you have error like this:
 ```
 git.cmd DEBUG Popen(['git', 'rev-parse', 'HEAD'], cwd=/home/ubuntu/ParlAI/parlai_internal, universal_newlines=False, shell=None, istream=None)
@@ -30,6 +27,10 @@ mkdir parlai_internal
 cp -r example_parlai_internal/ parlai_internal
 cd parlai_internal
 ```
+
+or change 'localhost' to ip address in Parlai_ver2/parlai/chat_service/services/browser_chat/client.py _run_browser()
+![example](https://github.com/qli74/ParlAI/blob/master/cov1.png)
+
 
 3.terminal chat
 ```
