@@ -65,7 +65,7 @@ python -u examples/train_model.py \
   --image-mode no_image_model
 ```
 ```
-python examples/eval_model.py -m transformer/polyencoder -mf model/covid19_scraped_ver6/poly_encoder_covid19 -t covid19 --encode-candidate-vecs true --eval-candidates fixed  
+python examples/eval_model.py -m transformer/polyencoder -mf model/covid19_scraped_ver6/poly_encoder_covid19 -t covid19 --encode-candidate-vecs true  
 ```
 ```
 python examples/interactive.py -m transformer/polyencoder -mf model/covid19_scraped_ver6/poly_encoder_covid19 --encode-candidate-vecs true --single-turn True
