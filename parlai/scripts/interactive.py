@@ -50,6 +50,31 @@ def setup_args(parser=None):
         default=True,
         help='Create interactive version of task',
     )
+    parser.add_argument(
+        '-sc',
+        '--script-chateval',
+        type='bool',
+        default=False,
+        dest='chat_script',
+        help='Chateval script read file'
+             'True: chateval evaluation, False: single-turn conversation with agent(original model)',
+    )
+    parser.add_argument(
+        '-scip',
+        '--chateval-input-path',
+        type=str,
+        default=None,
+        dest='script_input_path',
+        help='Chateval script input path',
+    )
+    parser.add_argument(
+        '-scop',
+        '--chateval-output-path',
+        type=str,
+        default=None,
+        dest='script_output_path',
+        help='Chateval result output path',
+    )
     parser.set_defaults(interactive_mode=True, task='interactive')
     LocalHumanAgent.add_cmdline_args(parser)
     return parser
