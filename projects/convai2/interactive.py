@@ -16,6 +16,8 @@ Examples
 When prompted, chat with the both, you will both be assigned personalities!
 Use "[DONE]" to indicate you are done with that chat partner, and want a new one.
 """
+import time
+
 from parlai.core.params import ParlaiParser
 from parlai.core.agents import create_agent
 from parlai.core.worlds import create_task
@@ -42,10 +44,54 @@ def setup_args(parser=None):
         default='label_candidates,text_candidates',
         help='Do not display these fields',
     )
+    parser.add_argument(
+        '-sc',
+        '--script-chateval',
+        type='bool',
+        default=False,
+        dest='chat_script',
+        help='Chateval script read file'
+             'True: chateval evaluation, False: single-turn conversation with agent(original model)',
+    )
+    parser.add_argument(
+        '-scip',
+        '--chateval-input-path',
+        type=str,
+        default=None,
+        dest='script_input_path',
+        help='Chateval script input path',
+    )
+    parser.add_argument(
+        '-scop',
+        '--chateval-output-path',
+        type=str,
+        default=None,
+        dest='script_output_path',
+        help='Chateval result output path',
+    )
     parser.set_defaults(model_file='models:convai2/kvmemnn/model')
     LocalHumanAgent.add_cmdline_args(parser)
     return parser
 
+def chat_script(input_path, output_path, model_name):
+    script_input_path = str(input_path)
+    script_file = open(script_input_path, 'r', encoding='utf-8')
+
+    script_out_path = str(output_path)
+    timestr = time.strftime("%Y%m%d-%H%M%S")
+    file_name = script_input_path.split('/')[-1].split('.')[0]
+
+    if model_name.find(":") != -1:
+        model_name = model_name.split(':')[-1]
+    else:
+        model_name = model_name.split('/')[-1]
+
+    if model_name.find('blender') != -1:
+        script_response = open(script_out_path + '/' + file_name + '_' + model_name.split('/')[-2] + '_' + timestr +
+                               '.txt', 'w')
+    else:
+        script_response = open(script_out_path + '/' + file_name + '_' + model_name + '_' + timestr +
+                               '.txt', 'w')
 
 def interactive(opt, print_parser=None):
     if print_parser is not None:
@@ -92,33 +138,97 @@ def interactive(opt, print_parser=None):
 
     # Now run interactive mode, chatting with personas!
     cnt = 0
-    while True:
-        if cnt == 0:
-            bot_persona = get_new_personas()
-        # Run the parts of world.parley() in turn,
-        # but insert persona into user message.
-        acts = world.acts
-        agents = world.agents
-        acts[0] = agents[0].act()
-        # add the persona on to the first message
-        if cnt == 0:
-            acts[0].force_set('text', bot_persona + acts[0].get('text', 'hi'))
-        agents[1].observe(acts[0])
-        acts[1] = agents[1].act()
-        agents[0].observe(acts[1])
-        world.update_counters()
-        cnt = cnt + 1
+    if not opt.get('chat_script'):
+        while True:
+            if cnt == 0:
+                bot_persona = get_new_personas()
+            # Run the parts of world.parley() in turn,
+            # but insert persona into user message.
+            acts = world.acts
+            agents = world.agents
+            acts[0] = agents[0].act()
+            # add the persona on to the first message
+            if cnt == 0:
+                acts[0].force_set('text', bot_persona + acts[0].get('text', 'hi'))
+            agents[1].observe(acts[0])
+            acts[1] = agents[1].act()
+            agents[0].observe(acts[1])
+            world.update_counters()
+            cnt = cnt + 1
 
-        if opt.get('display_examples'):
-            print("---")
-            print(world.display())
-        if world.episode_done():
-            print("CHAT DONE ")
-            print("In case you were curious you were talking to this bot:")
-            print(bot_persona.split('\n'))
-            print("\n... preparing new chat... \n")
-            cnt = 0
+            if opt.get('display_examples'):
+                print("---")
+                print(world.display())
+            if world.episode_done():
+                print("CHAT DONE ")
+                print("In case you were curious you were talking to this bot:")
+                print(bot_persona.split('\n'))
+                print("\n... preparing new chat... \n")
+                cnt = 0
+    else:
+        while True:
+            input_path = opt.get('script_input_path')
+            output_path = opt.get('script_output_path')
+            model_name_ = opt.get('model_file')
+            model_name = str(model_name_)
 
+            script_input_path = str(input_path)
+            script_file = open(script_input_path, 'r', encoding='utf-8')
+
+            script_out_path = str(output_path)
+            timestr = time.strftime("%Y%m%d-%H%M%S")
+            file_name = script_input_path.split('/')[-1].split('.')[0]
+
+            if model_name.find(":") != -1:
+                model_name = model_name.split(':')[-1]
+            else:
+                model_name = model_name.split('/')[-1]
+
+            if model_name.find('blender') != -1:
+                script_response = open(
+                    script_out_path + '/' + file_name + '_' + model_name.split('/')[-2] + '_' + timestr +
+                    '.txt', 'w')
+            else:
+                script_response = open(script_out_path + '/' + file_name + '_' + model_name + '_' + timestr +
+                                       '.txt', 'w')
+            if cnt == 0:
+                bot_persona = get_new_personas()
+            # Run the parts of world.parley() in turn,
+            # but insert persona into user message.
+            acts = world.acts
+            agents = world.agents
+            for raw_text in script_file:
+                raw_text = raw_text.replace('\n', '')
+                # acts[0] = agents[0].act()
+                acts[0] = {'id': 'localHuman', 'episode_done': False, 'label_candidates': None, 'text': str(raw_text)}
+                # add the persona on to the first message
+                # if cnt == 0:
+                #     acts[0].force_set('text', bot_persona + acts[0].get('text', 'hi'))
+                agents[1].observe(acts[0])
+                acts[1] = agents[1].act()
+                agents[0].observe(acts[1])
+
+                result = acts[1]['text']
+                script_response.write("%s\n" % (result))
+
+                world.update_counters()
+                cnt = cnt + 1
+
+                if opt.get('display_examples'):
+                    print("---")
+                    print(world.display())
+                if world.episode_done():
+                    print("CHAT DONE ")
+                    print("In case you were curious you were talking to this bot:")
+                    print(bot_persona.split('\n'))
+                    print("\n... preparing new chat... \n")
+                    cnt = 0
+            script_response.close()
+            print("script response complete!")
+            # acts[0] = {'id': 'localHuman', 'episode_done': False, 'label_candidates': None, 'text': '[DONE]'}
+            # agents[1].observe(validate(acts[0]))
+            import sys
+            sys.exit()
 
 if __name__ == '__main__':
     random.seed(42)
