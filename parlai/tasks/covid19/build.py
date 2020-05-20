@@ -21,7 +21,8 @@ from parlai.core.build_data import DownloadableFile
 RESOURCES = [
     DownloadableFile(
         # 'ba4228e6b1f4b8379cae0feb3d78cf76',
-        '1HkYVPHGqTNeXblASsh7ziL-eoqKyDTKz',
+        '1HkYVPHGqTNeXblASsh7ziL-eoqKyDTKz', # @20
+        # '1mcCx7WWDWRJkwXivXIpHleTtFpb4O3UT', # @10
         'Covid19QA-train.json',
         '',
         False,
@@ -29,7 +30,8 @@ RESOURCES = [
     ),
     DownloadableFile(
         # '59f3bd9dc8f683117bca31ad5ad4ebb1',
-        '1pV5fKYOz01V0gZVwbuJUXT_NnH1PEJw6',
+        '1pV5fKYOz01V0gZVwbuJUXT_NnH1PEJw6', # @20
+        # '1BjLZbZ_n2NTF5bqg0h-xqp_1ESjK_KJF', # @10
         'Covid19QA-test.json',
         '',
         False,
@@ -37,7 +39,8 @@ RESOURCES = [
     ),
     DownloadableFile(
         # '7dd8d672adf8c528491d54588515a4d3',
-        '1BnSf1kJRV567J4RzwYPpIZLBsqBv1Nr3',
+        '1BnSf1kJRV567J4RzwYPpIZLBsqBv1Nr3', # @20
+        # '1Yd0c0XjPnT-S9w33sZmE0ON7eVXknmbP', # @10
         'Covid19QA-dev.json',
         '',
         False,

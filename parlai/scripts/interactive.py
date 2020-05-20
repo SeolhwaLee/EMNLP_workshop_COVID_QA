@@ -74,18 +74,22 @@ def interactive(opt, print_parser=None):
     human_agent = LocalHumanAgent(opt)
     world = create_task(opt, [human_agent, agent])
 
-    # Show some example dialogs:
-    while True:
-        world.parley()
-        # output_demo = world.parley_demo()
-        # print("interacitve_demo", output_demo)
-        if opt.get('display_examples'):
-            print("---")
-            print(world.display())
-        if world.epoch_done():
-            print("EPOCH DONE")
-            break
-        # return output_demo
+    if not opt.get('chat_script'):
+        '''for chateval script evaluation'''
+        # Show some example dialogs:
+        while not world.epoch_done():
+            world.parley()
+            if opt.get('display_examples'):
+                print("---")
+                print(world.display())
+
+    else:
+        while not world.epoch_done():
+            # world.parley_script(opt.get('script_input_path'), opt.get('script_output_path'), opt.get('model-file'))
+            world.parley_script(opt.get('script_input_path'), opt.get('script_output_path'), opt.get('model_file'))
+            if opt.get('display_examples'):
+                print("---")
+                print(world.display())
 
 
 if __name__ == '__main__':
