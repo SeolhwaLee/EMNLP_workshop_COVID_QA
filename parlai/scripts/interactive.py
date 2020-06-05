@@ -75,6 +75,21 @@ def setup_args(parser=None):
         dest='script_output_path',
         help='Chateval result output path',
     )
+    parser.add_argument(
+        '--chateval-multi-num',
+        type=int,
+        default=0,
+        dest='chateval_multi_num',
+        help='True is chateval multiturn setting, turn coverage count.',
+    )
+    parser.add_argument(
+        '--chateval-multi',
+        type='bool',
+        default=False,
+        hidden=True,
+        dest='chateval_multi',
+        help='True is chateval multiturn setting, False just single turn.',
+    )
     parser.set_defaults(interactive_mode=True, task='interactive')
     LocalHumanAgent.add_cmdline_args(parser)
     return parser
@@ -111,7 +126,9 @@ def interactive(opt, print_parser=None):
     else:
         while not world.epoch_done():
             # world.parley_script(opt.get('script_input_path'), opt.get('script_output_path'), opt.get('model-file'))
-            world.parley_script(opt.get('script_input_path'), opt.get('script_output_path'), opt.get('model_file'))
+            # world.parley_script(opt.get('script_input_path'), opt.get('script_output_path'), opt.get('model_file'))
+            world.parley_script(opt.get('script_input_path'), opt.get('script_output_path'), opt.get('model_file'),
+                                opt.get('chateval_multi'), opt.get('chateval_multi_num'))
             if opt.get('display_examples'):
                 print("---")
                 print(world.display())

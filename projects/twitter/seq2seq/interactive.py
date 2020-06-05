@@ -47,7 +47,22 @@ if __name__ == '__main__':
         dest='script_output_path',
         help='Chateval result output path',
     )
-
+    parser.add_argument(
+        '--chateval-multi-num',
+        type=int,
+        default=0,
+        dest='chateval_multi_num',
+        help='True is chateval multiturn setting, turn coverage count.',
+    )
+    parser.add_argument(
+        '--chateval-multi',
+        type='bool',
+        default=False,
+        hidden=True,
+        dest='chateval_multi',
+        help='True is chateval multiturn setting, False just single turn.',
+    )
+    
     opt = parser.parse_args()
     # opt = parser.setup_args()
     if opt.get('model_file', '').startswith('models:convai2'):

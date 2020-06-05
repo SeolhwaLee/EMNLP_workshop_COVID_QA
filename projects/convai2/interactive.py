@@ -69,6 +69,21 @@ def setup_args(parser=None):
         dest='script_output_path',
         help='Chateval result output path',
     )
+    parser.add_argument(
+        '--chateval-multi-num',
+        type=int,
+        default=0,
+        dest='chateval_multi_num',
+        help='True is chateval multiturn setting, turn coverage count.',
+    )
+    parser.add_argument(
+        '--chateval-multi',
+        type='bool',
+        default=False,
+        hidden=True,
+        dest='chateval_multi',
+        help='True is chateval multiturn setting, False just single turn.',
+    )
     parser.set_defaults(model_file='models:convai2/kvmemnn/model')
     LocalHumanAgent.add_cmdline_args(parser)
     return parser
@@ -170,6 +185,8 @@ def interactive(opt, print_parser=None):
             input_path = opt.get('script_input_path')
             output_path = opt.get('script_output_path')
             model_name_ = opt.get('model_file')
+            multi_check = opt.get('chateval_multi')
+            turn_n = opt.get('chateval_multi_num')
             model_name = str(model_name_)
 
             script_input_path = str(input_path)
@@ -197,36 +214,149 @@ def interactive(opt, print_parser=None):
             # but insert persona into user message.
             acts = world.acts
             agents = world.agents
+            # for raw_text in script_file:
+            #     raw_text = raw_text.replace('\n', '')
+            #     # acts[0] = agents[0].act()
+            #     acts[0] = {'id': 'localHuman', 'episode_done': False, 'label_candidates': None, 'text': str(raw_text)}
+            #     # add the persona on to the first message
+            #     # if cnt == 0:
+            #     #     acts[0].force_set('text', bot_persona + acts[0].get('text', 'hi'))
+            #     agents[1].observe(acts[0])
+            #     acts[1] = agents[1].act()
+            #     agents[0].observe(acts[1])
+            #
+            #     result = acts[1]['text']
+            #     script_response.write("%s\n" % (result))
+            #
+            #     world.update_counters()
+            #     cnt = cnt + 1
+            #
+            #     if opt.get('display_examples'):
+            #         print("---")
+            #         print(world.display())
+            #     if world.episode_done():
+            #         print("CHAT DONE ")
+            #         print("In case you were curious you were talking to this bot:")
+            #         print(bot_persona.split('\n'))
+            #         print("\n... preparing new chat... \n")
+            #         cnt = 0
+            # script_response.close()
+            # print("script response complete!")
+            # # acts[0] = {'id': 'localHuman', 'episode_done': False, 'label_candidates': None, 'text': '[DONE]'}
+            # # agents[1].observe(validate(acts[0]))
+            # import sys
+            # sys.exit()
+            count = 0
             for raw_text in script_file:
+                count += 1
+                # acts[0] = {'id': 'localHuman', 'episode_done': False, 'label_candidates': None, 'text': 'hi'}
+                # if count > 850:
                 raw_text = raw_text.replace('\n', '')
-                # acts[0] = agents[0].act()
-                acts[0] = {'id': 'localHuman', 'episode_done': False, 'label_candidates': None, 'text': str(raw_text)}
-                # add the persona on to the first message
-                # if cnt == 0:
-                #     acts[0].force_set('text', bot_persona + acts[0].get('text', 'hi'))
-                agents[1].observe(acts[0])
-                acts[1] = agents[1].act()
-                agents[0].observe(acts[1])
+                if multi_check == True:
+                    if turn_n == 2:
+                        turn1 = raw_text.split('</s>')[0]
+                        turn2 = raw_text.split('</s>')[1]
+                        turn_temp = [turn1, turn2]
 
-                result = acts[1]['text']
-                script_response.write("%s\n" % (result))
+                        for index, turn_each in enumerate(turn_temp):
+                            if index == 1:
+                                # second turn
+                                acts[0] = {'id': 'localHuman', 'episode_done': False, 'label_candidates': None,
+                                           'text': str(turn_each)}
+                                agents[1].observe(acts[0])
+                                acts[1] = agents[1].act()
+                                agents[0].observe(acts[1])
 
-                world.update_counters()
-                cnt = cnt + 1
+                                result = acts[1]['text']
+                                script_response.write("%s\n" % (result))
+                                world.update_counters()
+                                cnt = cnt + 1
 
-                if opt.get('display_examples'):
-                    print("---")
-                    print(world.display())
-                if world.episode_done():
-                    print("CHAT DONE ")
-                    print("In case you were curious you were talking to this bot:")
-                    print(bot_persona.split('\n'))
-                    print("\n... preparing new chat... \n")
-                    cnt = 0
+                            # first turn
+                            acts[0] = {'id': 'localHuman', 'episode_done': True, 'label_candidates': None,
+                                       'text': str(turn_each)}
+                            agents[1].observe(acts[0])
+                            acts[1] = agents[1].act()
+                            agents[0].observe(acts[1])
+
+                            # result = acts[1]['text']
+                            # script_response.write("%s\n" % (result))
+                            world.update_counters()
+                            cnt = cnt + 1
+
+                        turn_temp = []
+
+                    elif turn_n == 3:
+                        turn1 = raw_text.split('</s>')[0].replace('`', '')
+                        turn2 = raw_text.split('</s>')[1].replace('`', '')
+                        # turn3 = raw_text.split('</s>')[2].replace('`', '')
+                        turn3 = raw_text.split('<\s>')[1].replace('`', '')
+                        # if turn2.find('</s>') != -1:
+                        #     turn3 = raw_text.split('</s>')[2].replace('`','')
+                        # elif raw_text.find('<\s>') != -1:
+                        #     turn3 = raw_text.split('<\s>')[1].replace('`','')
+                        # else:
+                        #     turn3 = ''
+                        #     print("Check the turn utterances!!")
+                        turn_temp = [turn1, turn2, turn3]
+
+                        for index, turn_each in enumerate(turn_temp):
+                            if index == 1:
+                                # second turn
+                                acts[0] = {'id': 'localHuman', 'episode_done': False, 'label_candidates': None,
+                                           'text': str(turn_each)}
+                                agents[1].observe(acts[0])
+                                acts[1] = agents[1].act()
+                                agents[0].observe(acts[1])
+
+                                result = acts[1]['text']
+                                # script_response.write("%s\n" % (result))
+                                world.update_counters()
+                                cnt = cnt + 1
+
+                            if index == 2:
+                                # third turn
+                                acts[0] = {'id': 'localHuman', 'episode_done': False, 'label_candidates': None,
+                                           'text': str(turn_each)}
+                                agents[1].observe(acts[0])
+                                acts[1] = agents[1].act()
+                                agents[0].observe(acts[1])
+
+                                result = acts[1]['text']
+                                script_response.write("%s\n" % (result))
+                                world.update_counters()
+                                cnt = cnt + 1
+
+                            # first turn
+                            acts[0] = {'id': 'localHuman', 'episode_done': True, 'label_candidates': None,
+                                       'text': str(turn_each)}
+                            agents[1].observe(acts[0])
+                            acts[1] = agents[1].act()
+                            agents[0].observe(acts[1])
+
+                            # result = acts[1]['text']
+                            # script_response.write("%s\n" % (result))
+                            world.update_counters()
+                            cnt = cnt + 1
+
+                        turn_temp = []
+
+                else:
+                    acts[0] = {'id': 'localHuman', 'episode_done': False, 'label_candidates': None,
+                               'text': str(raw_text)}
+                    agents[1].observe(acts[0])
+                    acts[1] = agents[1].act()
+                    agents[0].observe(acts[1])
+
+                    result = acts[1]['text']
+                    script_response.write("%s\n" % (result))
+                    world.update_counters()
+                    cnt = cnt + 1
+
             script_response.close()
             print("script response complete!")
-            # acts[0] = {'id': 'localHuman', 'episode_done': False, 'label_candidates': None, 'text': '[DONE]'}
-            # agents[1].observe(validate(acts[0]))
+            acts[0] = {'id': 'localHuman', 'episode_done': False, 'label_candidates': None, 'text': '[DONE]'}
+            agents[1].observe(acts[0])
             import sys
             sys.exit()
 
