@@ -29,7 +29,7 @@ cd parlai_internal
 ```
 
 or change 'localhost' to ip address in Parlai_ver2/parlai/chat_service/services/browser_chat/client.py _run_browser()
-![example](https://github.com/sseol11/Parlai_ver2/blob/master/parlai/tasks/covid19/covid.png){: width="50%" height="50%"}
+<img src="https://github.com/sseol11/Parlai_ver2/blob/master/parlai/tasks/covid19/covid.png" data-canonical-src="https://gyazo.com/eb5c5741b6a9a16c692170a41a49c858.png" width="500" height="300" />
 
 
 3.terminal chat
