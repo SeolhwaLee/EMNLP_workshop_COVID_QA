@@ -70,3 +70,17 @@ python examples/eval_model.py -m transformer/polyencoder -mf model/covid19_scrap
 ```
 python examples/interactive.py -m transformer/polyencoder -mf model/covid19_scraped_ver6/poly_encoder_covid19 --encode-candidate-vecs true --single-turn True
 ```
+
+## Using the Poly-encoder for a COVID-19 Question Answering System
+
+Implements the model described in the following paper (Offical) [Using the Poly-encoder for a COVID-19 Question Answering System](https://www.aclweb.org/anthology/2020.nlpcovid19-2.33/).
+
+
+```
+@inproceedings{lee2020using,
+  title={Using the Poly-encoder for a COVID-19 Question Answering System},
+  author={Lee, Seolhwa and Sedoc, Jo{\~a}o},
+  booktitle={Proceedings of the 1st Workshop on NLP for COVID-19 (Part 2) at EMNLP 2020},
+  year={2020}
+}
+```
