@@ -7,8 +7,8 @@ Tags: #covid19
 
 1.Download files (including train&valid data and model)
 ```
-git clone https://github.com/sseol11/Parlai_ver2.git
-cd ParlAI_ver2; python setup.py develop
+git clone https://github.com/SeolhwaLee/EMNLP_workshop_COVID_QA.git
+cd EMNLP_workshop_COVID_QA; python setup.py develop
 python examples/display_data.py -t covid19 -n 1
 ```
 
