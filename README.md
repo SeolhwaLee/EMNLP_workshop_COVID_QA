@@ -36,11 +36,11 @@ or change 'localhost' to ip address in Parlai_ver2/parlai/chat_service/services/
 ```
 ./start_terminal_service.sh
 ```
-![example](https://github.com/sseol11/Parlai_ver2/blob/master/cov_terminal.png)
+![example](https://github.com/SeolhwaLee/EMNLP_workshop_COVID_QA/blob/master/cov_terminal.png)
 
 
-4.another api file written with fastapi: Parlai_ver2/fastapi_covid.py\
-https://github.com/sseol11/Parlai_ver2/blob/master/fastapi_covid.py
+4.another api file written with fastapi: EMNLP_workshop_COVID_QA/fastapi_covid.py\
+https://github.com/SeolhwaLee/EMNLP_workshop_COVID_QA/blob/master/fastapi_covid.py
 
 5.code for training & eval & interactive
 ```
